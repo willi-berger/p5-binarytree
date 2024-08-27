@@ -17,7 +17,7 @@ function setup() {
 function readValuesAndCreateTree() {
   /** @type [] */
   let values = document.getElementById('values').value.split(",");
-  values = values.map(value => value.trim());
+  values = values.map(value => parseInt(value.trim()));
   console.dir(values);
   tree = new Tree();
   values.forEach((value) => 
@@ -119,6 +119,7 @@ class Tree {
   }
 
   insertNode(parent, node) {
+    console.debug(`p: ${parent.value} n: ${node.value}`)
     if (parent.value <= node.value) {
       if (parent.rightChild == null) {
         parent.rightChild = node;
@@ -192,7 +193,7 @@ class Tree {
 
   
   
-/**
+  /**
    * 
    * @param {TreeNode} node 
    * @param {number} posX 
