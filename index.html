@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Binary Tree</title>
 
-    <title>B inary Tree</title>
-
+    <link
+      rel="stylesheet"
+      href="pico.min.css"
+    >
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="libraries/p5.min.js"></script>
@@ -16,7 +20,16 @@
     <h1>Binary Tree</h1>
     <p>Demonstrates binary tree drawing algorithm</p>
     <div>
-      <canvas width="600" height="400" id="my-canvas"></canvas>
+      <canvas  id="my-canvas"></canvas>
+    </div>
+    <div>
+      <form>
+        <label>Values:
+          <input id='values' type="text" 
+            value="10, 5, 3, 20, 15, 60, 90, 1">
+        </label>
+        <input type="button" value="Update" onclick="onBtnUpateClicked()">
+      </form>
     </div>
     <script src="sketch.js"></script>
   </body>

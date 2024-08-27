@@ -1,11 +1,8 @@
 
 /** @type Tree */
 let tree;
-/** @type TreeNode[] */
-let nodes = [];
-let treeValues = [10, 5, 3, 20, 15, 60, 90, 1];
 
-const CANVAS_WIDTH = 600;
+const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 400;
 const TREE_NODE_DIAMETER = 60;
 
@@ -14,9 +11,16 @@ const TREE_NODE_DIAMETER = 60;
  */
 function setup() {
   createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, P2D, document.getElementById('my-canvas'));
-  
+  readValuesAndCreateTree();
+}
+
+function readValuesAndCreateTree() {
+  /** @type [] */
+  let values = document.getElementById('values').value.split(",");
+  values = values.map(value => value.trim());
+  console.dir(values);
   tree = new Tree();
-  treeValues.forEach((value) => 
+  values.forEach((value) => 
     tree.insert(new TreeNode(0, 0, value)));
   console.dir(tree);
   tree.calculatePositions();
@@ -27,7 +31,7 @@ function setup() {
  */
 function draw() {
   background(220);
-  nodes.forEach(item => item.show());
+  tree.nodes.forEach(item => item.show());
  
   /* places the x a y position of the mouse
   on the canvas as a coordinate pair x, y */
@@ -97,13 +101,15 @@ class TreeNode {
 class Tree {
   constructor() {
     this.root = null;
+    /** @type TreeNode[] */
+    this.nodes = [];
   }
 
   /**
    * @param {TreeNode} node 
    */
   insert(node) {
-    nodes.push(node)
+    this.nodes.push(node)
     if (this.root == null) {
       this.root = node;
       return;
@@ -266,4 +272,9 @@ calculatePositions() {
     let index = 0;
     in_order(this.root, 0);
   }
+}
+
+function onBtnUpateClicked() {
+  console.debug('onBtnUpateClicked');
+  readValuesAndCreateTree();
 }
